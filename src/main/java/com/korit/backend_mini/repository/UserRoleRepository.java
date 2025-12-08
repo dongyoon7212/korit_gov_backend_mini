@@ -19,8 +19,8 @@ public class UserRoleRepository {
         }
     }
 
-    public void updateUserRole(UserRole userRole) {
-        userRoleMapper.updateUserRole(userRole);
+    public int updateUserRole(UserRole userRole) {
+        return userRoleMapper.updateUserRole(userRole);
     }
 
 }

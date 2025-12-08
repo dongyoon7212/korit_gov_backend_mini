@@ -30,6 +30,15 @@ public class JwtUtils {
                 .compact();
     }
 
+    public String generateVerifyToken(String userId) {
+        return Jwts.builder()
+                .subject("VerifyToken")
+                .id(userId)
+                .expiration(new Date(new Date().getTime() + (1000L * 60L * 3L)))
+                .signWith(KEY)
+                .compact();
+    }
+
     public Claims getClaims(String token) throws JwtException {
         return Jwts.parser()
                 .verifyWith(KEY)

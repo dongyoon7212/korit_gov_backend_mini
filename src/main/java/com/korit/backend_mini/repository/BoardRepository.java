@@ -40,7 +40,7 @@ public class BoardRepository {
     }
 
     public List<BoardRespDto> getBoardListByUserId(Integer userId) {
-
+        return boardMapper.getBoardListByUserId(userId);
     }
 }
 

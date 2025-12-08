@@ -6,5 +6,5 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface UserRoleMapper {
     int addUserRole(UserRole userRole);
-    void updateUserRole(UserRole userRole);
+    int updateUserRole(UserRole userRole);
 }
