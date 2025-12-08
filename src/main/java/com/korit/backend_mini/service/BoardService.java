@@ -1,9 +1,6 @@
 package com.korit.backend_mini.service;
 
-import com.korit.backend_mini.dto.AddBoardReqDto;
-import com.korit.backend_mini.dto.ApiRespDto;
-import com.korit.backend_mini.dto.BoardRespDto;
-import com.korit.backend_mini.dto.ModifyBoardReqDto;
+import com.korit.backend_mini.dto.*;
 import com.korit.backend_mini.entity.Board;
 import com.korit.backend_mini.entity.User;
 import com.korit.backend_mini.repository.BoardRepository;
@@ -75,6 +72,27 @@ public class BoardService {
         }
 
         return new ApiRespDto<>("success", "게시물 수정 완료", null);
+    }
+
+    public ApiRespDto<?> removeBoard(RemoveBoardReqDto removeBoardReqDto, PrincipalUser principalUser) {
+        if (!removeBoardReqDto.getUserId().equals(principalUser.getUserId())
+                && principalUser.getUserRoles()
+                .stream()
+                .noneMatch(userRole -> userRole.getRole().getRoleId() == 1)) {
+            return new ApiRespDto<>("failed", "잘못된 접근입니다.", null);
+        }
+
+        Optional<BoardRespDto> foundBoard = boardRepository.getBoardByBoardId(removeBoardReqDto.getBoardId());
+        if (foundBoard.isEmpty()) {
+            return new ApiRespDto<>("failed", "존재하지 않은 게시물입니다.", null);
+        }
+
+        int result = boardRepository.removeBoard(removeBoardReqDto.getBoardId());
+        if (result != 1) {
+            return new ApiRespDto<>("failed", "게시물 삭제에 실패했습니다.", null);
+        }
+
+        return new ApiRespDto<>("success", "게시물 삭제 완료", null);
     }
 }
 

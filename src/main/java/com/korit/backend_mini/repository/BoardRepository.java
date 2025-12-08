@@ -34,6 +34,10 @@ public class BoardRepository {
     public int modifyBoard(Board board) {
         return boardMapper.modifyBoard(board);
     }
+
+    public int removeBoard(Integer boardId) {
+        return boardMapper.removeBoard(boardId);
+    }
 }
 
 

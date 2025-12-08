@@ -2,6 +2,7 @@ package com.korit.backend_mini.controller;
 
 import com.korit.backend_mini.dto.AddBoardReqDto;
 import com.korit.backend_mini.dto.ModifyBoardReqDto;
+import com.korit.backend_mini.dto.RemoveBoardReqDto;
 import com.korit.backend_mini.security.model.PrincipalUser;
 import com.korit.backend_mini.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,6 +40,11 @@ public class BoardController {
     @PostMapping("/modify")
     public ResponseEntity<?> modifyBoard(@RequestBody ModifyBoardReqDto modifyBoardReqDto, @AuthenticationPrincipal PrincipalUser principalUser) {
         return ResponseEntity.ok(boardService.modifyBoard(modifyBoardReqDto, principalUser));
+    }
+
+    @PostMapping("/remove")
+    public ResponseEntity<?> removeBoard(@RequestBody RemoveBoardReqDto removeBoardReqDto, @AuthenticationPrincipal PrincipalUser principalUser) {
+        return ResponseEntity.ok(boardService.removeBoard(removeBoardReqDto, principalUser));
     }
 }
 

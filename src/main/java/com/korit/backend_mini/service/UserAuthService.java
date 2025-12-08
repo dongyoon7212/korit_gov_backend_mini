@@ -42,27 +42,22 @@ public class UserAuthService {
             return new ApiRespDto<>("failed", "이미 존재하는 사용자 이름 입니다.", null);
         }
 
-        try {
-            Optional<User> optionalUser = userRepository.addUser(signupReqDto.toEntity(bCryptPasswordEncoder));
-            if (optionalUser.isEmpty()) {
-                throw new RuntimeException("회원 추가에 실패했습니다.");
-            }
-
-            UserRole userRole = UserRole.builder()
-                    .userId(optionalUser.get().getUserId())
-                    .roleId(3)
-                    .build();
-
-            int result = userRoleRepository.addUserRole(userRole);
-            if (result != 1) {
-                throw new RuntimeException("회원 권한 추가에 실패했습니다.");
-            }
-
-            return new ApiRespDto<>("success", "회원가입이 완료되었습니다.", optionalUser.get());
-
-        } catch (Exception e) {
-            return new ApiRespDto<>("failed", "문제가 발생했습니다. 다시 시도해주세요.: "+ e.getMessage(), null);
+        Optional<User> optionalUser = userRepository.addUser(signupReqDto.toEntity(bCryptPasswordEncoder));
+        if (optionalUser.isEmpty()) {
+            throw new RuntimeException("회원 추가에 실패했습니다.");
         }
+
+        UserRole userRole = UserRole.builder()
+                .userId(optionalUser.get().getUserId())
+                .roleId(3)
+                .build();
+
+        int result = userRoleRepository.addUserRole(userRole);
+        if (result != 1) {
+            throw new RuntimeException("회원 권한 추가에 실패했습니다.");
+        }
+
+        return new ApiRespDto<>("success", "회원가입이 완료되었습니다.", optionalUser.get());
     }
 
     public ApiRespDto<?> signin(SigninReqDto signinReqDto) {

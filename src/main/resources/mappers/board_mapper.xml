@@ -92,6 +92,13 @@
         where
             board_id = #{boardId};
     </update>
+
+    <delete id="removeBoard">
+        delete from
+            board_tb
+        where
+            board_id = #{boardId};
+    </delete>
 </mapper>
 
 

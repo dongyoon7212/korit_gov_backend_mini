@@ -14,4 +14,5 @@ public interface BoardMapper {
     Optional<BoardRespDto> getBoardByBoardId(Integer boardId);
     List<BoardRespDto> getBoardListByKeyword(String keyword);
     int modifyBoard(Board board);
+    int removeBoard(Integer boardId);
 }
