@@ -82,6 +82,25 @@
             bt.create_dt desc;
     </select>
 
+    <select id="getBoardListByUserId" resultMap="BoardRespResultMap">
+        select
+            bt.board_id,
+            bt.title,
+            bt.content,
+            bt.user_id,
+            bt.create_dt,
+            bt.update_dt,
+
+            ut.username
+        from
+            board_tb bt
+            join user_tb ut on (bt.user_id = ut.user_id);
+        where
+            bt.user_id = #{userId}
+        order by
+            bt.create_dt desc;
+    </select>
+
     <update id="modifyBoard">
         update
             board_tb

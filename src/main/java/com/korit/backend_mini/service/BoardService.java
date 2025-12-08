@@ -94,6 +94,15 @@ public class BoardService {
 
         return new ApiRespDto<>("success", "게시물 삭제 완료", null);
     }
+
+    public ApiRespDto<?> getBoardListByUserId(Integer userId) {
+        Optional<User> foundUser = userRepository.getUserByUserId(userId);
+        if (foundUser.isEmpty()) {
+            return new ApiRespDto<>("failed", "회원정보가 존재하지 않습니다.", null);
+        }
+
+        return new ApiRespDto<>("success", "유저 게시물 리스트 조회 완료", boardRepository.getBoardListByUserId(userId));
+    }
 }
 
 

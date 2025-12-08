@@ -38,6 +38,10 @@ public class BoardRepository {
     public int removeBoard(Integer boardId) {
         return boardMapper.removeBoard(boardId);
     }
+
+    public List<BoardRespDto> getBoardListByUserId(Integer userId) {
+
+    }
 }
 
 

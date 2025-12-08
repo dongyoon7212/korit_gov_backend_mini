@@ -5,6 +5,7 @@ import com.korit.backend_mini.dto.ModifyBoardReqDto;
 import com.korit.backend_mini.dto.RemoveBoardReqDto;
 import com.korit.backend_mini.security.model.PrincipalUser;
 import com.korit.backend_mini.service.BoardService;
+import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -45,6 +46,11 @@ public class BoardController {
     @PostMapping("/remove")
     public ResponseEntity<?> removeBoard(@RequestBody RemoveBoardReqDto removeBoardReqDto, @AuthenticationPrincipal PrincipalUser principalUser) {
         return ResponseEntity.ok(boardService.removeBoard(removeBoardReqDto, principalUser));
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<?> getBoardListByUserId(@PathVariable Integer userId) {
+        return ResponseEntity.ok(boardService.getBoardListByUserId(userId));
     }
 }
 
