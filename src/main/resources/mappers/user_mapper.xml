@@ -118,6 +118,26 @@
             (0, #{email}, #{password}, #{username}, null, now(), null);
     </insert>
 
+    <update id="changePassword">
+        update
+            user_tb
+        set
+            password = #{password},
+            update_dt = now()
+        where
+            user_id = #{userId};
+    </update>
+
+    <update id="changeUsername">
+        update
+            user_tb
+        set
+            username = #{username},
+            update_dt = now()
+        where
+            user_id = #{userId};
+    </update>
+
 </mapper>
 
 

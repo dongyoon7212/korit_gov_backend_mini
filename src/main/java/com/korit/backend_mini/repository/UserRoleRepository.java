@@ -11,8 +11,8 @@ public class UserRoleRepository {
     @Autowired
     private UserRoleMapper userRoleMapper;
 
-    public void addUserRole(UserRole userRole) {
-        userRoleMapper.addUserRole(userRole);
+    public int addUserRole(UserRole userRole) {
+        return userRoleMapper.addUserRole(userRole);
     }
 
     public void updateUserRole(UserRole userRole) {

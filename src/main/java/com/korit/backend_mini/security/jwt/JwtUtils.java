@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.util.Base64;
+import java.util.Date;
 
 @Component
 public class JwtUtils {
@@ -18,6 +19,15 @@ public class JwtUtils {
 
     public JwtUtils(@Value("${jwt.secret}") String secret) {
         KEY = Keys.hmacShaKeyFor(Decoders.BASE64.decode(secret));
+    }
+
+    public String generateAccessToken(String userId) {
+        return Jwts.builder()
+                .subject("AccessToken")
+                .id(userId)
+                .expiration(new Date(new Date().getTime() + (1000L * 60L * 60L * 24L * 30L)))
+                .signWith(KEY)
+                .compact();
     }
 
     public Claims getClaims(String token) throws JwtException {
