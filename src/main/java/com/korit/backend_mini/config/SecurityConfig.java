@@ -64,7 +64,7 @@ public class SecurityConfig {
             ).hasRole("ADMIN");
             auth.requestMatchers(
                     "/board/**"
-            ).hasAnyRole("ADMIN", "USER");
+            ).hasAnyRole("ADMIN", "USER", "TEMPORARY_USER");
             auth.requestMatchers(
                     "/user/auth/**",
                     "/admin/auth/**",

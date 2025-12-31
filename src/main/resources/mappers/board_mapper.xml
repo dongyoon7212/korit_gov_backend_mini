@@ -18,6 +18,7 @@
         <result property="content" column="content"/>
         <result property="userId" column="user_id"/>
         <result property="username" column="username"/>
+        <result property="profileImg" column="profile_img"/>
         <result property="createDt" column="create_dt"/>
         <result property="updateDt" column="update_dt"/>
     </resultMap>
@@ -36,6 +37,7 @@
             bt.content,
             bt.user_id,
             ut.username,
+            ut.profile_img,
             bt.create_dt,
             bt.update_dt
         from
@@ -52,6 +54,7 @@
             bt.content,
             bt.user_id,
             ut.username,
+            ut.profile_img,
             bt.create_dt,
             bt.update_dt
         from
@@ -68,6 +71,7 @@
             bt.content,
             bt.user_id,
             ut.username,
+            ut.profile_img,
             bt.create_dt,
             bt.update_dt
         from
@@ -86,6 +90,7 @@
             bt.content,
             bt.user_id,
             ut.username,
+            ut.profile_img,
             bt.create_dt,
             bt.update_dt
         from

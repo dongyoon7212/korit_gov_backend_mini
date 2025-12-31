@@ -47,7 +47,7 @@ public class MailService {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(principalUser.getEmail());
         message.setSubject("[ 이메일 인증 ] 이메일 인증을 완료해주세요.");
-        message.setText("이메일 인증 링크입니다. 링크를 눌러 인증을 완료해주세요.\nhttp://localhost:8080/mail/verify?token=" + verifyToken);
+        message.setText("이메일 인증 링크입니다. 링크를 눌러 인증을 완료해주세요.\nhttp://localhost:8080/mail/verify?token=" + verifyToken + "\n이메일 인증 완료 후 새로고침을 해주세요.");
 
         javaMailSender.send(message);
 

@@ -13,6 +13,7 @@ public class BoardRespDto {
     private String content;
     private Integer userId;
     private String username;
+    private String profileImg;
     private LocalDateTime createDt;
     private LocalDateTime updateDt;
 }
