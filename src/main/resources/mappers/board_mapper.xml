@@ -47,6 +47,33 @@
             bt.create_dt desc;
     </select>
 
+    <select id="getBoardInfinite" resultMap="BoardRespResultMap">
+        select
+            bt.board_id,
+            bt.title,
+            bt.content,
+            bt.user_id,
+            ut.username,
+            ut.profile_img,
+            bt.create_dt,
+            bt.update_dt
+        from
+            board_tb bt
+            join user_tb ut on (bt.user_id = ut.user_id)
+        <where>
+            <if test="cursorCreateDt != null and cursorBoardId != null">
+                (
+                    bt.create_dt &lt; #{cursorCreateDt}
+                    or (bt.create_dt = #{cursorCreateDt} and bt.board_id &lt; #{cursorBoardId})
+                )
+            </if>
+        </where>
+        order by
+            bt.create_dt desc,
+            bt.board_id desc
+        limit #{limitPlusOne};
+    </select>
+
     <select id="getBoardByBoardId" resultMap="BoardRespResultMap">
         select
             bt.board_id,
