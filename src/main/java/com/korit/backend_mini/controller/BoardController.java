@@ -6,6 +6,7 @@ import com.korit.backend_mini.dto.board.RemoveBoardReqDto;
 import com.korit.backend_mini.security.model.PrincipalUser;
 import com.korit.backend_mini.service.BoardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
@@ -32,7 +33,7 @@ public class BoardController {
     @GetMapping("/list/infinite")
     public ResponseEntity<?> getBoardInfinite(
             @RequestParam Integer limit,
-            @RequestParam(required = false) LocalDateTime cursorCreateDt,
+            @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime cursorCreateDt,
             @RequestParam(required = false) Integer cursorBoardId
     ) {
           return ResponseEntity.ok(boardService.getBoardInfinite(limit, cursorCreateDt, cursorBoardId));
