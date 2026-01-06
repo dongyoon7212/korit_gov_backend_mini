@@ -10,6 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+
 @RestController
 @RequestMapping("/board")
 public class BoardController {
@@ -25,6 +27,15 @@ public class BoardController {
     @GetMapping("/list")
     public ResponseEntity<?> getBoardList() {
         return ResponseEntity.ok(boardService.getBoardList());
+    }
+
+    @GetMapping("/list/infinite")
+    public ResponseEntity<?> getBoardInfinite(
+            @RequestParam Integer limit,
+            @RequestParam(required = false) LocalDateTime cursorCreateDt,
+            @RequestParam(required = false) Integer cursorBoardId
+    ) {
+          return ResponseEntity.ok(boardService.getBoardInfinite(limit, cursorCreateDt, cursorBoardId));
     }
 
     @GetMapping("/{boardId}")
