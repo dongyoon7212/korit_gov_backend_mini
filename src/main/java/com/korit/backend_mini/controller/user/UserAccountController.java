@@ -12,7 +12,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/user/account")
+@RequestMapping("/user/account")
 public class UserAccountController {
 
     @Autowired

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @Controller
-@RequestMapping("/api/mail")
+@RequestMapping("/mail")
 public class MailController {
 
     @Autowired
