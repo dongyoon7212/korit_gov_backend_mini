@@ -59,18 +59,18 @@ public class SecurityConfig {
 
         http.authorizeHttpRequests(auth -> {
             auth.requestMatchers(
-                    "/admin/manage/**",
-                    "/admin/account/**"
+                    "/api/admin/manage/**",
+                    "/api/admin/account/**"
             ).hasRole("ADMIN");
             auth.requestMatchers(
-                    "/board/**"
+                    "/api/board/**"
             ).hasAnyRole("ADMIN", "USER", "TEMPORARY_USER");
             auth.requestMatchers(
-                    "/user/auth/**",
-                    "/admin/auth/**",
-                    "/mail/verify",
+                    "/api/user/auth/**",
+                    "/api/admin/auth/**",
+                    "/api/mail/verify",
                     "/login/oauth2/**",
-                    "/oauth2/**"
+                    "/api/oauth2/**"
             ).permitAll();
             auth.anyRequest().authenticated();
         });
